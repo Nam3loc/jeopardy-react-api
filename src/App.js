@@ -5,8 +5,9 @@ import Counter from './components/Counter';
 function App() {
   return (
     <div className="App">
+      <h1>Welcome to Jeopardy!</h1>
       <Counter />
-      <h2>Let's Play</h2>
+      <h2>Let's Play!</h2>
       <GetQuestion />
     </div>
   );

@@ -1,6 +1,6 @@
 import {useState, useEffect} from 'react';
 
-export default function GetQuestion(porps) {
+export default function GetQuestion(props) {
     // set the api to a variable
     const url = `http://jservice.io/api/random`
 
@@ -35,19 +35,21 @@ export default function GetQuestion(porps) {
                 </h3>
             )
         }
-        fetchQuestionFromData()
+        return fetchQuestionFromData();
     }
 
     // dont really know but I know it makes things work
     useEffect(() => {
-        getQ()
+        if(!question) {
+            getQ()
+        }
     }, [])
 
     // function for what the promise does if the fetch is fruitful
     const loaded = () => {
         return (
             <div>
-                <button onClick={handleClick}>Get Question</button>
+                <button className="getQuestionButton" onClick={handleClick}>Get Question</button>
                 <h3>
                     Category: {question.category_id}
                     {console.log(question.category_id)}
@@ -59,7 +61,7 @@ export default function GetQuestion(porps) {
                     Answer: {question.answer}
                 </h3>
                 <br />
-                <button onClick={revealQuestion}>Click to Reveal Question</button>
+                <button className="revealQuestionButton" onClick={revealQuestion}>Click to Reveal Question</button>
             </div>
         )
     }
