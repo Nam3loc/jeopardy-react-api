@@ -3,24 +3,24 @@ import { useState } from 'react';
 export default function Counter(props) {
     const [count, setCount] = useState(0);
 
-    let valueToAdd = 50;
+    let score = 100;
 
 
     const handleIncrement = () => {
-        setCount(count + valueToAdd)
+        setCount(count + score)
     }
 
     const handleDecrement = () => {
-        setCount(count - valueToAdd)
+        setCount(count - score)
     }
 
     const handleReset = () => {
-        setCount(valueToAdd * 0)
+        setCount(0)
     }
 
     return (
         <>
-            <span><h2>Score: {count}</h2></span>
+            <h2><span>Score: {count}</span></h2>
             <br />
             <div className="counterButtons">
                 <button className="increaseButton" onClick={handleIncrement}>Increase</button>

@@ -6,13 +6,14 @@ export default function GetQuestion(props) {
 
     // set state to hold data from fetched API
     const [question, setQuestion] = useState(null);
+    const [reveal, setReveal] = useState(false);
 
     // function to fetch the data from API
     const getQ = async () => {
         try {
             const response = await fetch(url);
             const data = await response.json();
-            setQuestion(data);
+            setQuestion(data[0]);
         } catch (err) {
             console.error(err);
         }
@@ -20,9 +21,11 @@ export default function GetQuestion(props) {
 
     // onclick function to initiate data getter
     const handleClick = (evt) => {
-        evt.preventDefault();
-
         getQ();
+    }
+
+    const handleReveal = (evt) => {
+        setReveal(!reveal);
     }
 
     const revealQuestion = (evt) => {
@@ -31,7 +34,7 @@ export default function GetQuestion(props) {
         const fetchQuestionFromData = () => {
             return (
                 <h3>
-                    Question: {question.question}
+                    Question: {question.answer}
                 </h3>
             )
         }
@@ -58,10 +61,13 @@ export default function GetQuestion(props) {
                     Points: {question.value}
                 </h3>
                 <h3>
-                    Answer: {question.answer}
+                    Answer: {question.question}
                 </h3>
                 <br />
-                <button className="revealQuestionButton" onClick={revealQuestion}>Click to Reveal Question</button>
+                <button className="revealQuestionButton" onClick={handleReveal}>Click to Reveal Answer</button>
+                {
+                    reveal ? <h3>Answer: {question.answer}</h3> : ' '
+                }
             </div>
         )
     }
